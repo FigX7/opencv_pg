@@ -1,4 +1,5 @@
 [run]
 omit =
   *virtualenvs/*,
-  *init__.py
+  *init__.py,
+  azure_cv_examples.py
