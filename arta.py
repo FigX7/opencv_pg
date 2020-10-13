@@ -31,46 +31,9 @@ computervision_client = ComputerVisionClient(
     CognitiveServicesCredentials(subscription_key))
 
 
-'''
-Detect Objects - remote
-This example detects different kinds of objects with bounding boxes in a remote image.
-'''
-print("===== Detect Objects - remote =====")
 # Call API with URL
 
 list_guns = azure_manager.list_blobs('handguns')
-
-detect_objects_results_remote = computervision_client.detect_objects(
-    azure_manager.get_blob_url('handguns', list_guns[0]))
-
-# Print detected objects results with bounding boxes
-print("Detecting objects in remote image:")
-if len(detect_objects_results_remote.objects) == 0:
-    print("No objects detected.")
-else:
-    for object in detect_objects_results_remote.objects:
-        print("object at location {}, {}, {}, {}".format(
-            object.rectangle.x, object.rectangle.x + object.rectangle.w,
-            object.rectangle.y, object.rectangle.y + object.rectangle.h))
-
-
-print("===== Categorize an image - remote =====")
-# Select the visual feature(s) you want.
-remote_image_features = ["categories"]
-for index in range(0, 10):
-    categorize_results_remote = computervision_client.analyze_image(
-        .get_blob_url('handguns', list_guns[index]),
-        remote_image_features)
-
-    # Print results with confidence score
-    print("Categories from remote image: ")
-    if (len(categorize_results_remote.categories) == 0):
-        print("No categories detected.")
-    else:
-        for category in categorize_results_remote.categories:
-            print("'{}' with confidence {:.2f}%".format(
-                category.name,
-                category.score * 100))
 
 '''
 Tag an Image - remote

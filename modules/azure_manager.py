@@ -14,18 +14,21 @@ class AzureManager(object):
 
     def upload_image(
             self,
-            image=None,
+            file_name=None,
+            path=None,
             container_name=None):
+        """ Upload an Image to Azure as blob """
         try:
 
             connect_str = os.getenv('AZURE_STORAGE_CONNECTION_STRING')
             blob_service_client = BlobServiceClient.from_connection_string(
                 connect_str)
-            print(f'\nUploading to Azure Storage as blob:\n\t {image.name}')
-            blob_client = blob_service_client.get_blob_client(
-                container=container_name,
-                blob=image.name)
-            blob_client.upload_blob(image)
+            print(f'\nUploading to Azure Storage as blob:\n\t {file_name}')
+            with open(f'{path}/{file_name}', 'rb') as data:
+                blob_client = blob_service_client.get_blob_client(
+                    container=container_name,
+                    blob=file_name)
+                blob_client.upload_blob(data, overwrite=True)
             return 1
         except Exception as e:
             print(str(e))
@@ -43,7 +46,8 @@ class AzureManager(object):
             for root, dirs, files in os.walk(dir_path):
                 for filename in files:
                     file_name = filename.replace(' ', '')
-                    print(f'\nUploading to Azure Storage as blob:\n\t {file_name}')
+                    print(
+                        f'\nUploading to Azure Storage as blob:\n\t {file_name}')
                     with open(f'{root}/{filename}', 'rb') as data:
                         blob_client = blob_service_client.get_blob_client(
                             container=container_name,
@@ -54,7 +58,8 @@ class AzureManager(object):
             print(str(e))
             return 0
 
-    def list_blobs(self, container_name=None):
+    def list_blobs_names(self, container_name=None):
+        """ List all the blobs names in a container """
         connect_str = os.getenv('AZURE_STORAGE_CONNECTION_STRING')
         blob_service_client = BlobServiceClient.from_connection_string(
             connect_str)

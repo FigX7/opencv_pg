@@ -2,26 +2,21 @@
 import cv2
 
 
-# define a video capture object
-vid = cv2.VideoCapture(
-    "rtsp://Figs:JesusCC@192.168.0.215/live")
+class CameraVLC():
 
-while(True):
+    def capture(self, rtsp_path, out_path):
+        # define a video capture object
+        vid = cv2.VideoCapture(rtsp_path)
 
-    # Capture the video frame
-    # by frame
-    ret, frame = vid.read()
+        # Capture the video frame
+        # by frame
+        success, frame = vid.read()
 
-    # Display the resulting frame
-    cv2.imshow('frame', frame)
-
-    # the 'q' button is set as the
-    # quitting button you may use any
-    # desired button of your choiceq
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-
-# After the loop release the cap object
-vid.release()
-# Destroy all the windows
-cv2.destroyAllWindows()
+        # Display the resulting frame
+        if success:
+            cv2.imwrite(
+                out_path,
+                frame)
+            cv2.imshow("TEST", frame)
+            print(type(frame))
+        return frame
