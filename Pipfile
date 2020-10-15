@@ -1,0 +1,56 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+atomicwrites = "*"
+attrs = "*"
+azure-cognitiveservices-vision-computervision = "*"
+azure-common = "*"
+azure-core = "*"
+azure-storage-blob = "*"
+certifi = "*"
+cffi = "*"
+chardet = "*"
+colorama = "*"
+coverage = "*"
+cryptography = "*"
+flake8 = "*"
+greenlet = "*"
+keyboard = "*"
+idna = "*"
+iniconfig = "*"
+isodate = "*"
+mccabe = "*"
+msrest = "*"
+numpy = "*"
+oauthlib = "*"
+opencv-python = "*"
+packaging = "*"
+Pillow = "*"
+pluggy = "*"
+py = "*"
+pycodestyle = "*"
+pycparser = "*"
+pyflakes = "*"
+pyparsing = "*"
+PySide2 = "*"
+pytest = "*"
+python-dotenv = "*"
+python-vlc = "*"
+requests = "*"
+requests-oauthlib = "*"
+shiboken2 = "*"
+six = "*"
+toml = "*"
+urllib3 = "*"
+zope.event = "*"
+zope.interface = "*"
+
+
+[requires]
+python_version = "3.8"
+

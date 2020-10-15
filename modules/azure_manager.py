@@ -75,5 +75,6 @@ class AzureManager(object):
             self,
             container_name=None,
             file_name=None):
+
         base_url = os.getenv('AZURE_STORAGE_URL')
         return f'{base_url}{container_name}/{file_name}'

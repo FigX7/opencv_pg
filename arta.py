@@ -1,18 +1,21 @@
+import datetime
+import os
+import sys
+
 from azure.cognitiveservices.vision.computervision import ComputerVisionClient
 from azure.cognitiveservices.vision.computervision.models import OperationStatusCodes
 from azure.cognitiveservices.vision.computervision.models import VisualFeatureTypes
 from msrest.authentication import CognitiveServicesCredentials
 
-from array import array
-import os
-from PIL import Image
-import sys
-import time
-
 from dotenv import load_dotenv
+import keyboard
+from PIL import Image
+from modules import azure_manager
+from modules import camera_vlc
+
+
 load_dotenv()
 
-from modules import azure_manager
 
 # Add your Computer Vision subscription key to your environment variables.
 subscription_key = os.getenv('COMPUTER_VISION_SUBSCRIPTION_KEY')
@@ -31,30 +34,36 @@ computervision_client = ComputerVisionClient(
     CognitiveServicesCredentials(subscription_key))
 
 
-# Call API with URL
-
-list_guns = azure_manager.list_blobs('handguns')
+'''
+Detect Objects - remote
+This example detects different kinds of objects with bounding boxes in a remote image.
+'''
+print("===== Detect Objects - remote =====")
 
 '''
 Tag an Image - remote
 This example returns a tag (key word) for each thing in the image.
 '''
-threat_words = ['gun', 'weapon', 'rifle', 'firearm']
-threats = []
-# Call API with remote image
-for item in list_guns:
-    print(f'===== Tag an image - remote ===== {item}')
-    tags_result_remote = computervision_client.tag_image(
-        azure_manager.get_blob_url('handguns', item))
+camera = camera_vlc.CameraVLC()
+time_start = datetime.datetime.now()
 
-    # Print results with confidence score
-    print("Tags in the remote image: ")
-    if (len(tags_result_remote.tags) == 0):
-        print("No tags detected.")
-    else:
-        for tag in tags_result_remote.tags:
-            print("'{}' with confidence {:.2f}%".format(tag.name, tag.confidence * 100))
+while True:
+    start = datetime.timedelta(
+        hours=time_start.hour,
+        minutes=time_start.minute,
+        seconds=time_start.second,
+        microseconds=time_start.microsecond)
+    timer = datetime.datetime.now()
+    timer = datetime.timedelta(
+        hours=timer.hour,
+        minutes=timer.minute,
+        seconds=timer.second,
+        microseconds=timer.microsecond)
+    d = timer - start
 
-            if tag.name in threat_words:
-                threats.append(f'{item}')
-                break
+    keyboard.add_hotkey('enter', lambda: camera.capture(
+        os.getenv('RTSP_URL'),
+        f'./data/frames/frame_{d.seconds}_{d.microseconds}.jpg'
+    ))
+
+print("===== Tag an image - remote =====")
