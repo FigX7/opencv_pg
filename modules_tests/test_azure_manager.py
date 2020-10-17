@@ -36,5 +36,3 @@ def test_upload_image(azure_manager):
     container_name = 'tests'
     result = azure_manager.upload_image(file_name, path, container_name)
     assert 1 == result
-
-# TODO:upload director test

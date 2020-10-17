@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0d5048ad34c1a258571a2fccce7cf7d71d17582c355f1e2652995a1adaeaaf0e"
+            "sha256": "d1730afcc9f60e4a4ebb2d452534e7dbeb0789ec79e9792217ffdb58b36ee943"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -224,7 +224,8 @@
         },
         "colorama": {
             "hashes": [
-                "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"
+                "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2",
+                "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"
             ],
             "index": "pypi",
             "version": "==0.4.4"
@@ -382,14 +383,6 @@
             ],
             "index": "pypi",
             "version": "==0.6.0"
-        },
-        "keyboard": {
-            "hashes": [
-                "sha256:63ed83305955939ca5c9a73755e5cc43e8242263f5ad5fd3bb7e0b032f3d308b",
-                "sha256:8e9c2422f1217e0bd84489b9ecd361027cc78415828f4fe4f88dd4acd587947b"
-            ],
-            "index": "pypi",
-            "version": "==0.13.5"
         },
         "mccabe": {
             "hashes": [
@@ -623,6 +616,15 @@
             ],
             "index": "pypi",
             "version": "==2.2.0"
+        },
+        "pynput": {
+            "hashes": [
+                "sha256:452e1f23ed1c2e85e61b2daedc8b6a5481a696b1ed1b98ef0ab164038a104adf",
+                "sha256:5a5598bfb14322eff980ac6ca820635fce9028faa4f64a8e1581243aaf6785ee",
+                "sha256:b2b96cec8411a940a7f73da6965f13927d03d46fb5105c5bc63ed04f29b2b8f0"
+            ],
+            "index": "pypi",
+            "version": "==1.7.1"
         },
         "pyparsing": {
             "hashes": [
