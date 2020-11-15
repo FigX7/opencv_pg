@@ -56,8 +56,9 @@ url = 'https://www.youtube.com/watch?v=KmWr_p20tCM'
 vPafy = pafy.new(url)
 play = vPafy.getbest()
 
-_vid = cv2.VideoCapture(play.url)
+# _vid = cv2.VideoCapture(play.url)
 
+_vid = cv2.VideoCapture(os.getenv('RTSP_URL'))
 while True:
     success, frame = _vid.read()
 
@@ -75,28 +76,28 @@ while True:
             path,
             container)
         
-        '''
-        Tag an Image - remote
-        This example returns a tag (key word) for each thing in the image.
-        '''
-        threat_words = ['gun', 'weapon', 'rifle', 'firearm']
-        threats = []
-        list_guns = az_manager.list_blobs_names(container)
-        # Call API with remote image
-        for item in list_guns:
-            print(f'===== Tag an image - remote ===== {item}')
-            tags_result_remote = computervision_client.tag_image(
-                az_manager.get_blob_url(container, item))
+        # '''
+        # Tag an Image - remote
+        # This example returns a tag (key word) for each thing in the image.
+        # '''
+        # threat_words = ['gun', 'weapon', 'rifle', 'firearm']
+        # threats = []
+        # list_guns = az_manager.list_blobs_names(container)
+        # # Call API with remote image
+        # for item in list_guns:
+        #     print(f'===== Tag an image - remote ===== {item}')
+        #     tags_result_remote = computervision_client.tag_image(
+        #         az_manager.get_blob_url(container, item))
 
-            # Print results with confidence score
-            print("Tags in the remote image: ")
-            if (len(tags_result_remote.tags) == 0):
-                print("No tags detected.")
-            else:
-                for tag in tags_result_remote.tags:
-                    print("'{}' with confidence {:.2f}%".format(tag.name, tag.confidence * 100))
+        #     # Print results with confidence score
+        #     print("Tags in the remote image: ")
+        #     if (len(tags_result_remote.tags) == 0):
+        #         print("No tags detected.")
+        #     else:
+        #         for tag in tags_result_remote.tags:
+        #             print("'{}' with confidence {:.2f}%".format(tag.name, tag.confidence * 100))
 
-                    if tag.name in threat_words:
-                        threats.append(f'{item}')
-                        break
+        #             if tag.name in threat_words:
+        #                 threats.append(f'{item}')
+        #                 break
 
