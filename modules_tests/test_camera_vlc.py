@@ -1,17 +1,21 @@
+import os
 import pytest
 import numpy
+
+import cv2
 from modules.camera_vlc import CameraVLC
+
+_OUT_PATH = './modules_tests/assets/test_camera/test_capture.jpg'
 
 
 @pytest.fixture
 def camera(request):
     """Create tester object"""
-    return CameraVLC()
+    return CameraVLC(_OUT_PATH)
 
 
 def test_capture(camera):
-    path = 'rtsp://Figs:JesusCC@192.168.0.215/live'
-    output = './modules_tests/assets/test_camera/test_capture.jpg'
-    img = camera.capture(path, output)
+    video_capture = cv2.VideoCapture(os.getenv('RTSP_URL'))
+    success, frame = video_capture.read()
 
-    assert isinstance(img, numpy.ndarray)
+    assert isinstance(frame, numpy.ndarray)

@@ -1,5 +1,5 @@
 {
-    "python.pythonPath":"C:\\Users\\micha\\.virtualenvs\\computer-vision\\Scripts\\python.exe",
+    "python.pythonPath":"/home/pi/.virtualenvs/arta/bin/python3",
     "python.envFile": "${workspaceFolder}/.env",
     "pythonTestExplorer.testFramework": "pytest",
     "python.testing.pytestEnabled": true,

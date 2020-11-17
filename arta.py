@@ -61,11 +61,10 @@ play = vPafy.getbest()
 _vid = cv2.VideoCapture(os.getenv('RTSP_URL'))
 while True:
     success, frame = _vid.read()
-
     if success:
         container = 'arta-rtsp-feed'
         file_name = f'{_calc_time_diff(_time_start).seconds}.jpg'
-        path = f'./data/frames/'
+        path = './data/frames/'
         camera = camera_vlc.CameraVLC(f'{path}{file_name}')
 
         camera.capture(frame)
@@ -75,7 +74,7 @@ while True:
             file_name,
             path,
             container)
-        
+
         # '''
         # Tag an Image - remote
         # This example returns a tag (key word) for each thing in the image.
@@ -100,4 +99,3 @@ while True:
         #             if tag.name in threat_words:
         #                 threats.append(f'{item}')
         #                 break
-
